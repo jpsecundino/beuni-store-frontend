@@ -9,7 +9,6 @@ type ProductProps = {
     image: [{
         url: string,
     }]
-
 }
 
 function ProductCard(props: ProductProps) {

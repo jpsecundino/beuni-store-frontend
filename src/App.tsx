@@ -4,10 +4,11 @@ import TextField from '@mui/material/TextField';
 import './App.css';
 import ProductCard from './components/ProductCard';
 import ProductFetcher from './components/ProductFetcher';
+import ProductList from './components/ProductList';
 
 function App() {
 
-    let [products, setProducts] = useState([]);
+    let [products, setProducts] = useState<[]>([]);
     let [searchTerm, setSearchTerm] = useState('')
 
     const getProducts = (searchTerm:string) => {
@@ -24,15 +25,9 @@ function App() {
                 </label>
                 <input type="submit" value="Submit" onClick={() => getProducts(searchTerm)} />
             </form>
-            {products.map(product =>
-                <ProductCard
-                    name={product['name']}
-                    description={product['description']}
-                    price={product['price']}
-                    image={product['image']}
-                    minimumQuantity={product['minimumQuantity']}
-                ></ProductCard>
-            )}
+            
+            <ProductList productList={products}/> 
+
         </div>
     );
 }
