@@ -6,13 +6,15 @@ type ProductProps = {
     description: string,
     price: string,
     minimumQuantity: string,
-    image: {
-        url: string
-    }
+    image: [{
+        url: string,
+    }]
+
 }
 
 function ProductCard(props: ProductProps) {
     let { name, description, price, image, minimumQuantity } = props;
+    console.log(props)
 
     const extra = (
         <a>
@@ -27,7 +29,7 @@ function ProductCard(props: ProductProps) {
     
     return (
         <Card
-            image={image.url}
+            image={image[0].url}
             header={name}
             meta={'Quantidade mínima: ' + minimumQuantity}
             description={description}
