@@ -3,38 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 import axios, { AxiosResponse } from 'axios';
 import ProductCard from './components/ProductCard';
+import ProductFetcher from './components/ProductFetcher';
 
 function App() {
 
     let [products, setProducts] = useState([]);
+    let [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-        getProducts();
+        getProducts(searchTerm);
     }, []);
 
-    const getProducts = () => {
-        console.log("Rodei.")
-        try {
-            axios.get("http://localhost:3001/products", {params: {name: "camis"}})
-                .then(response => {setProducts(response.data); console.log(products)})
-        }catch (e){
-            console.log(e)
-        }
+    const getProducts = (searchTerm:string) => {
+        ProductFetcher.getProducts(searchTerm)
+                      .then(response => setProducts(response.data))
     }
     return (
         <div className="App">
-                {products.map(product =>
-                    <ProductCard
-                        name={product['name']}
-                        description={product['description']}
-                        price={product['price']}
-                        image={product['image']}
-                        minimumQuantity={product['minimumQuantity']}
-                    ></ProductCard>
-                )}
-            <button onClick={getProducts}>
-                Clique aqui
-            </button>
+            {products.map(product =>
+                <ProductCard
+                    name={product['name']}
+                    description={product['description']}
+                    price={product['price']}
+                    image={product['image']}
+                    minimumQuantity={product['minimumQuantity']}
+                ></ProductCard>
+            )}
         </div>
     );
 }
