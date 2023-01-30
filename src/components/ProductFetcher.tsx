@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 class ProductFetcher {
 
-    static getProducts(searchTerm: string){
+    static getProducts(searchTerm: string) {
         let response;
 
         response = axios.get("http://localhost:3001/products", { params: { name: searchTerm } })

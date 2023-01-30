@@ -1,0 +1,10 @@
+.products-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    column-gap: 10px;
+    row-gap: 5px;
+}

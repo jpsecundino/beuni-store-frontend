@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import './App.css';
 import ProductFetcher from './components/ProductFetcher';
 import ProductList from './components/ProductList';
@@ -8,15 +8,21 @@ function App() {
 
     let [products, setProducts] = useState<[]>([]);
 
-    const getProducts = (query:string) => {
+    const getProducts = (query: string) => {
+        if (query.length === 0) {
+            return;
+        }
+
         ProductFetcher.getProducts(query)
             .then(response => setProducts(response.data));
     }
 
     return (
         <div className="App">
-            <TopBar onQuery={getProducts}/>
-            <ProductList productList={products} />
+            <TopBar onQuery={getProducts} />
+            <div className='page-content'>
+                <ProductList productList={products} />               
+            </div>
         </div>
     );
 }
