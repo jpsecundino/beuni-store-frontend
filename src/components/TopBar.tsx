@@ -1,6 +1,8 @@
 import { useState } from "react";
-import AppBar from "@mui/material/AppBar";
 import BeuniLogo from "../beuni-logo.png"
+import "./TopBar.css";
+import SearchSharpIcon from '@mui/icons-material/SearchSharp';
+import IconButton from '@mui/material/IconButton';
 
 type TopBarProps = {
     onQuery: Function
@@ -12,16 +14,15 @@ function TopBar(props: TopBarProps) {
     let { onQuery } = props;
 
     return (
-        <AppBar position='sticky'>
-        <img src={BeuniLogo} alt="Company logo" width={146}></img>
-        <form onSubmit={(event) => event.preventDefault()}>
-        <label>
-            Product name:
-                <input type="text" name="name" value={query} onChange={(event) => setQuery(event.target.value) } />
-            </label>
-            <input type="submit" value="Submit" onClick={() => onQuery(query)} />
-        </form>
-    </AppBar>
+        <header className="bar-container">
+            <img className="logo" src={BeuniLogo} alt="Company logo" width={146} height={44} />
+            <form className="form-container" onSubmit={(event) => event.preventDefault()}>
+                <input className="form-input" type="text" name="product-query" placeholder="Pesquise por um produto" value={query} onChange={(event) => setQuery(event.target.value) } />
+                <IconButton className="form-btn" type="submit" onClick={() => onQuery(query)}>
+                    <SearchSharpIcon className="form-btn"/>
+                </IconButton>
+            </form>
+        </header>
     )
     
 }

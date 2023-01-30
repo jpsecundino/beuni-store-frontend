@@ -15,13 +15,8 @@ function App() {
 
     return (
         <div className="App">
-
             <TopBar onQuery={getProducts}/>
-        
             <ProductList productList={products} />
-            
-
-
         </div>
     );
 }

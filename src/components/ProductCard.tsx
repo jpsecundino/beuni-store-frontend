@@ -12,7 +12,6 @@ type ProductProps = {
 
 function ProductCard(props: ProductProps) {
     let { name, description, price, image, minimumQuantity } = props;
-    console.log(props)
 
     const extra = (
         <a>
