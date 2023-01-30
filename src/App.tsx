@@ -1,38 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
-import TextField from '@mui/material/TextField';
+import {useState} from 'react';
 import './App.css';
-import ProductCard from './components/ProductCard';
 import ProductFetcher from './components/ProductFetcher';
 import ProductList from './components/ProductList';
-import AppBar from '@mui/material/AppBar';
-import BeuniLogo from './beuni-logo.png';
+import TopBar from './components/TopBar';
 
 function App() {
 
     let [products, setProducts] = useState<[]>([]);
-    let [searchTerm, setSearchTerm] = useState<string>('')
 
-    const getProducts = (searchTerm:string) => {
-        ProductFetcher.getProducts(searchTerm)
+    const getProducts = (query:string) => {
+        ProductFetcher.getProducts(query)
             .then(response => setProducts(response.data));
     }
 
     return (
         <div className="App">
-            <AppBar position='sticky'>
-                <img src={BeuniLogo} alt="Company logo" width={146}></img>
-                <form onSubmit={(event) => event.preventDefault()}>
-                <label>
-                    Product name:
-                        <input type="text" name="name" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value); console.log(searchTerm)}} />
-                    </label>
-                    <input type="submit" value="Submit" onClick={() => getProducts(searchTerm)} />
-                </form>
-            </AppBar>
 
+            <TopBar onQuery={getProducts}/>
+        
+            <ProductList productList={products} />
             
-            <ProductList productList={products}/> 
+
 
         </div>
     );

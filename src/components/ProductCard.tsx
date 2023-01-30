@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, Icon, Button } from "semantic-ui-react";
 
 type ProductProps = {
