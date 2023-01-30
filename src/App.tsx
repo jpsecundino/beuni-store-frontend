@@ -5,11 +5,13 @@ import './App.css';
 import ProductCard from './components/ProductCard';
 import ProductFetcher from './components/ProductFetcher';
 import ProductList from './components/ProductList';
+import AppBar from '@mui/material/AppBar';
+import BeuniLogo from './beuni-logo.png';
 
 function App() {
 
     let [products, setProducts] = useState<[]>([]);
-    let [searchTerm, setSearchTerm] = useState('')
+    let [searchTerm, setSearchTerm] = useState<string>('')
 
     const getProducts = (searchTerm:string) => {
         ProductFetcher.getProducts(searchTerm)
@@ -18,13 +20,17 @@ function App() {
 
     return (
         <div className="App">
-            <form onSubmit={(event) => event.preventDefault()}>
-            <label>
-                Product name:
-                    <input type="text" name="name" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value); console.log(searchTerm)}} />
-                </label>
-                <input type="submit" value="Submit" onClick={() => getProducts(searchTerm)} />
-            </form>
+            <AppBar position='sticky'>
+                <img src={BeuniLogo} alt="Company logo" width={146}></img>
+                <form onSubmit={(event) => event.preventDefault()}>
+                <label>
+                    Product name:
+                        <input type="text" name="name" value={searchTerm} onChange={(event) => { setSearchTerm(event.target.value); console.log(searchTerm)}} />
+                    </label>
+                    <input type="submit" value="Submit" onClick={() => getProducts(searchTerm)} />
+                </form>
+            </AppBar>
+
             
             <ProductList productList={products}/> 
 
