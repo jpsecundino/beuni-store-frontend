@@ -1,18 +1,24 @@
-import { Card, Icon, Button, CardDescription } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 import "./ProductCard.css";
 
-type ProductProps = {
-    name: string,
-    description: string,
-    price: string,
-    minimumQuantity: string,
-    image: [{
-        url: string,
-    }]
-}
+export type ProductProps = {
+    product: {
+        id: number,
+        name: string,
+        description: string,
+        price: string,
+        minimumQuantity: string,
+        rating: number,
+        hasFreeShipping: boolean,
+        total_stock: number,
+        image: [{
+            url: string,
+        }]
+    }
+};
 
 function ProductCard(props: ProductProps) {
-    let { name, description, price, image, minimumQuantity } = props;
+    let { name, description, price, image, minimumQuantity } = props.product;
 
     const extra = (
         <a>
