@@ -1,11 +1,13 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
+
+const BASE_URL: string = "http://localhost:4000";
 
 class ProductFetcher {
 
     static getProductsByName(productName: string) {
         let response;
 
-        response = axios.get("http://localhost:4000/products", { params: { name: productName } })
+        response = axios.get(BASE_URL + "/products", { params: { name: productName } })
     
         return response;
     }
@@ -13,7 +15,7 @@ class ProductFetcher {
     static getProductById(id: string) {
         let response;
 
-        response = axios.get("http://localhost:4000/product", { params: { id: id } })
+        response = axios.get(BASE_URL + "/product", { params: { id: id } })
     
         return response;
     }
