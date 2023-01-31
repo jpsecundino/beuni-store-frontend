@@ -1,20 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "./ProductList.css"
-type ProductListProps = {
-    productList: [],
-};
+import ProductFetcher from "./ProductFetcher";
+import { useLocation } from "react-router-dom";
 
 
-function ProductList(props: ProductListProps) {
+function ProductList() {
 
     const notFoundMessage = 'Não encontramos nenhum produto com esse nome :(';
 
+    const location = useLocation()
+    let nameQuery = location.search.split('?name=')[1]
+
+    let [loadingResponse, setLoadingResponse] = useState<boolean>(true);
+    let [products, setProducts] = useState<any[]>([]);
+    
+    const getProductsByName = (name: string) => {
+        setLoadingResponse(true);
+        ProductFetcher.getProductsByName(name)
+            .then(response => {
+                setProducts(response.data);
+                setLoadingResponse(false);
+                console.log(response)
+            });
+    }
+
+    useEffect(() => {
+        getProductsByName(nameQuery);
+    }, [nameQuery])
+
     function buildProductCards() {
-        return props.productList.map(productInfo =>
+        return products.map(p =>
             <ProductCard
-                key={productInfo['id']}
-                product={productInfo}
+                key={p['id']}
+                productInfo={p}
             />
         )
     }
@@ -26,7 +45,7 @@ function ProductList(props: ProductListProps) {
 
     return (
         <div className='products-container'>
-            { props.productList.length === 0 ? showNotFoundMessage() : buildProductCards()}
+            { products.length === 0 ? showNotFoundMessage() : buildProductCards()}
         </div>
    ) 
 

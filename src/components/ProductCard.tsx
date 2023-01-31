@@ -1,8 +1,9 @@
 import { Icon, Button } from "semantic-ui-react";
 import "./ProductCard.css";
+import { Link } from "react-router-dom";
 
 export type ProductProps = {
-    product: {
+    productInfo: {
         id: number,
         name: string,
         description: string,
@@ -18,42 +19,47 @@ export type ProductProps = {
 };
 
 function ProductCard(props: ProductProps) {
-    let { name, description, price, image, minimumQuantity } = props.product;
+    let { id, name, description, price, image, minimumQuantity, total_stock } = props.productInfo;
 
-    const extra = (
-        <a>
-          <Button animated="fade" color="orange">
-                <Button.Content visible>R${ parseFloat(price).toFixed(2) }</Button.Content>
-            <Button.Content hidden>
-              <Icon name="shop" />
-            </Button.Content>
-          </Button>
-        </a>
-    );
+    function isOutOfStock() {
+        return total_stock === 0;
+    }
 
     return (
-        <div className="card">
-            <div className="top">
-                <img className="image" src={image[0].url}></img>
-            </div>
-            <div className="middle">
-                <p className="product-name">{name}</p>
-                <p className="minimum-quantity">Pedido mínimo {minimumQuantity}</p>
-                <p className="description">{description}</p>
-            </div>
-            <div className="bottom">
-                <span className="price">R${parseFloat(price).toFixed(2)}</span>
-                <Button animated="fade" color="orange">
-                    <Button.Content hidden>
-                        <Icon name="plus" />
-                    </Button.Content>
-                    
-                    <Button.Content visible>
-                        <Icon name="shop" />
-                    </Button.Content>
-                </Button>
-            </div>
-        </div>
+        <Link to={{pathname: "/product", search:`?id=${id}`}}>
+            <div className="card">
+                <div className="top">
+                    <img className="image" src={image[0].url}></img>
+                </div>
+                <div className="middle">
+                    <p className="product-name">{name}</p>
+                    <p className="minimum-quantity">Pedido mínimo {minimumQuantity}</p>
+                    <p className="description">{description}</p>
+                </div>
+                <div className="bottom">
+                    <span className="price">R${parseFloat(price).toFixed(2)}</span>
+                    <div className="button-region">
+                        {isOutOfStock() ? "Fora de estoque" : ""}
+                        <Button
+                            size="large"
+                            className="button"
+                            animated="fade"
+                            color="orange"
+                            disabled={isOutOfStock()}
+                        >
+                            <Button.Content hidden>
+                                +
+                            </Button.Content>
+                            
+                            <Button.Content visible>
+                                <Icon size="large" name="plus cart" />
+                            </Button.Content>
+                        </Button>
+                    </div>
+                    </div>
+
+                </div>
+        </Link>
     )
 
 

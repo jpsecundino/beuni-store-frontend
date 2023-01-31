@@ -1,35 +1,79 @@
-import { useState } from 'react';
-import Modal from '@mui/material/Modal';
-import { ProductProps } from './ProductCard';
+import { useState, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import { Icon, Button } from "semantic-ui-react";
+import ProductFetcher from "./ProductFetcher";
+import { useLocation } from 'react-router-dom';
+import "./ProductPage.css"
 
+function ProductPage() {
 
-function ProductPage(props: ProductProps) {
+    const location = useLocation()
+    let productId = location.search.split('?id=')[1]
+
+    let [product, setProduct] = useState<any>({});
+    let [loadingResponse, setLoadingResponse] = useState<boolean>(true);
+
+    const getProductById = (id: string) => {
+        setLoadingResponse(true);
+        ProductFetcher.getProductById(id)
+            .then(response => {
+                setProduct(response.data[0]);
+                setLoadingResponse(false);
+            });
+    }
+
+    useEffect(() => {
+        getProductById(productId);
+    }, [])
+
     return (
-            
-            <div className='product-info-modal'>
-                <div className="left">
-                    <img className="image" src='https://m.media-amazon.com/images/I/71Ulhyxs4pL._AC_SL1200_.jpg'></img>
+        !loadingResponse && product !== undefined ?
+            <div className='product-page'>
+                <div className="left-side">
+                    <img className="image" src={product.image[0].url}></img>
                 </div>
-                <div className='right'>
-                    <h1>Product Name</h1>
-                    <Rating name="read-only" value={3} readOnly />
-                    <p>Has free shipping</p>
-                    <p>Product in stock</p>
-                    <p>Minimum purchase</p>
-                    <p>Product descriptionProduct descriptionProduct descriptionProduct descriptionProduct descriptionProduct descriptionProduct descriptionProduct descriptionProduct description</p>
-                    <Button animated="fade" color="orange">
+                <div className='right-side'>
+                    <h1>{product.name}</h1> 
+
+                    <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly />
+
+                    <p>
+                        {product.hasFreeShipping === "false" ? "Frete grátis!" : ''}
+                    </p>
+
+                    <p>
+                        Pedido Mínimo: {product.minimumQuantity}
+                    </p>
+
+                    <p className='product-description'>
+                        {product.description}
+                    </p>
+
+                    <Button
+                        className='add-to-cart-button'
+                        size="big"
+                        animated="fade"
+                        color="orange"
+                        disabled={parseInt(product.total_stock) === 0}
+                    >
+                        
                         <Button.Content visible>
-                            Adicionar ao carrinho
+                            {parseInt(product.total_stock) === 0 ?
+                                "Produto fora de estoque" :
+                                "Adicionar ao carrinho"
+                            }
+
                         </Button.Content>
                         
-                        <Button.Content hidden>
-                            <Icon name="shop" />
+                        <Button.Content hidden >
+                            <Icon size="big" name="shop" />
                         </Button.Content>
                     </Button>
+
                 </div>
             </div>
+            :
+            <h2>Não foi possível encontrar o produto.</h2>
     );
 
 }

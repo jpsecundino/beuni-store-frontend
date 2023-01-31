@@ -1,8 +1,14 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import './App.css';
 import ProductFetcher from './components/ProductFetcher';
 import ProductList from './components/ProductList';
 import TopBar from './components/TopBar';
+import ProductPage from './components/ProductPage';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+  } from "react-router-dom";
 
 function App() {
 
@@ -13,16 +19,22 @@ function App() {
             return;
         }
 
-        ProductFetcher.getProducts(query)
+        ProductFetcher.getProductsByName(query)
             .then(response => setProducts(response.data));
     }
 
     return (
         <div className="App">
+            <BrowserRouter>
             <TopBar onQuery={getProducts} />
             <div className='page-content'>
-                <ProductList productList={products} />               
+                <Routes> 
+                    <Route path='/search' element={<ProductList />} />
+                    <Route path='/product' element={<ProductPage/>} />
+                    </Routes>
             </div>
+            </BrowserRouter>          
+
         </div>
     );
 }
