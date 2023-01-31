@@ -17,19 +17,10 @@ function App() {
 
     let [products, setProducts] = useState<[]>([]);
 
-    const getProducts = (query: string) => {
-        if (query.length === 0) {
-            return;
-        }
-
-        ProductFetcher.getProductsByName(query)
-            .then(response => setProducts(response.data));
-    }
-
     return (
         <div className="App">
             <BrowserRouter>
-            <TopBar onQuery={getProducts} />
+            <TopBar />
             <div className='page-content'>
                     <Routes> 
                     <Route path='/' element={<LandingPage/>}></Route>

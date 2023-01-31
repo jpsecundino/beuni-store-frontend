@@ -21,7 +21,6 @@ function ProductList() {
             .then(response => {
                 setProducts(response.data);
                 setLoadingResponse(false);
-                console.log(response)
             });
     }
 

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import Rating from '@mui/material/Rating';
-import { Icon, Button } from "semantic-ui-react";
+import {Icon, Button} from "semantic-ui-react";
 import ProductFetcher from "./ProductFetcher";
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import styles from "./ProductPage.module.css"
 import LoadingPage from './LoadingPage';
 
@@ -30,54 +30,54 @@ function ProductPage() {
     return (
         loadingResponse ?
             <LoadingPage text='Carregando produto'/>
-        :
-        product !== undefined ?
-            <div className={styles.productPage}>
+            :
+            product !== undefined ?
+                <div className={styles.productPage}>
                     <div className={styles.leftSide}>
-                    <img className={styles.image} src={product.image[0].url}></img>
-                </div>
-                <div className={styles.rightSide}>
-                    <h1>{product.name}</h1> 
+                        <img className={styles.image} src={product.image[0].url}></img>
+                    </div>
+                    <div className={styles.rightSide}>
+                        <h1>{product.name}</h1>
 
-                    <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly />
+                        <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly/>
 
-                    <p>
-                        {product.hasFreeShipping === "false" ? "Frete grátis!" : ''}
-                    </p>
+                        <p>
+                            {product.hasFreeShipping === "false" ? "Frete grátis!" : ''}
+                        </p>
 
-                    <p>
-                        Pedido Mínimo: {product.minimumQuantity}
-                    </p>
+                        <p>
+                            Pedido Mínimo: {product.minimumQuantity}
+                        </p>
 
                         <p className={styles.productDescription}>
-                        {product.description}
-                    </p>
+                            {product.description}
+                        </p>
 
-                    <Button
-                        className={styles.addToCartButton}
-                        size="big"
-                        animated="fade"
-                        color="orange"
-                        disabled={parseInt(product.total_stock) === 0}
-                    >
-                        
-                        <Button.Content visible>
-                            {parseInt(product.total_stock) === 0 ?
-                                "Produto fora de estoque" :
-                                "Adicionar ao carrinho"
-                            }
+                        <Button
+                            className={styles.addToCartButton}
+                            size="big"
+                            animated="fade"
+                            color="orange"
+                            disabled={parseInt(product.total_stock) === 0}
+                        >
 
-                        </Button.Content>
-                        
-                        <Button.Content hidden >
-                            <Icon size="big" name="shop" />
-                        </Button.Content>
-                    </Button>
+                            <Button.Content visible>
+                                {parseInt(product.total_stock) === 0 ?
+                                    "Produto fora de estoque" :
+                                    "Adicionar ao carrinho"
+                                }
 
+                            </Button.Content>
+
+                            <Button.Content hidden>
+                                <Icon size="big" name="shop"/>
+                            </Button.Content>
+                        </Button>
+
+                    </div>
                 </div>
-            </div>
-            :
-            <h2>Não foi possível encontrar o produto.</h2>
+                :
+                <h2>Não foi possível encontrar o produto.</h2>
     );
 
 }

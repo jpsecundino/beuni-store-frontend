@@ -8,8 +8,8 @@ class ProductFetcher {
         let response;
 
         response = axios.get(BASE_URL + "/products", { params: { name: productName } })
-    
-        return response;
+        console.log("called with " + productName);
+        return response;    
     }
 
     static getProductById(id: string) {
