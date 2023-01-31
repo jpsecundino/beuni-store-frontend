@@ -4,6 +4,8 @@ import ProductFetcher from './components/ProductFetcher';
 import ProductList from './components/ProductList';
 import TopBar from './components/TopBar';
 import ProductPage from './components/ProductPage';
+import LandingPage from './components/LandingPage';
+
 import {
     BrowserRouter,
     Routes,
@@ -28,7 +30,8 @@ function App() {
             <BrowserRouter>
             <TopBar onQuery={getProducts} />
             <div className='page-content'>
-                <Routes> 
+                    <Routes> 
+                    <Route path='/' element={<LandingPage/>}></Route>
                     <Route path='/search' element={<ProductList />} />
                     <Route path='/product' element={<ProductPage/>} />
                     </Routes>
