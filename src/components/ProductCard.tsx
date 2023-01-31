@@ -31,7 +31,7 @@ function ProductCard(props: ProductProps) {
                 <img className="image" src={image[0].url}></img>
             </div>
             <div className="middle">
-                <h3 className="product-name">{name}</h3>
+                <p className="product-name">{name}</p>
                 <p className="minimum-quantity">Pedido mínimo {minimumQuantity}</p>
                 <p className="description">{description}</p>
             </div>
