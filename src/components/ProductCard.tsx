@@ -1,4 +1,5 @@
 import { Card, Icon, Button, CardDescription } from "semantic-ui-react";
+import "./ProductCard.css";
 
 type ProductProps = {
     name: string,
@@ -24,17 +25,29 @@ function ProductCard(props: ProductProps) {
         </a>
     );
 
-    let cardDescription = <CardDescription textAlign="left">{description}</CardDescription>
-    
     return (
-        <Card
-            key={name}
-            image={image[0].url}
-            header={name}
-            meta={'Quantidade mínima: ' + minimumQuantity}
-            description={cardDescription}
-            extra={extra}
-        />
+        <div className="card">
+            <div className="top">
+                <img className="image" src={image[0].url}></img>
+            </div>
+            <div className="middle">
+                <h3 className="product-name">{name}</h3>
+                <p className="minimum-quantity">Pedido mínimo {minimumQuantity}</p>
+                <p className="description">{description}</p>
+            </div>
+            <div className="bottom">
+                <span className="price">R${parseFloat(price).toFixed(2)}</span>
+                <Button animated="fade" color="orange">
+                    <Button.Content hidden>
+                        <Icon name="plus" />
+                    </Button.Content>
+                    
+                    <Button.Content visible>
+                        <Icon name="shop" />
+                    </Button.Content>
+                </Button>
+            </div>
+        </div>
     )
 
 
