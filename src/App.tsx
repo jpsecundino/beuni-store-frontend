@@ -5,6 +5,7 @@ import ProductList from './components/ProductList';
 import TopBar from './components/TopBar';
 import ProductPage from './components/ProductPage';
 import LandingPage from './components/LandingPage';
+import LoadingPage from './components/LoadingPage';
 
 import {
     BrowserRouter,

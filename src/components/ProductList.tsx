@@ -3,6 +3,7 @@ import ProductCard from "./ProductCard";
 import "./ProductList.css"
 import ProductFetcher from "./ProductFetcher";
 import { useLocation } from "react-router-dom";
+import LoadingPage from "./LoadingPage";
 
 
 function ProductList() {
@@ -44,7 +45,9 @@ function ProductList() {
 
 
     return (
-        <div className='products-container'>
+        loadingResponse 
+        ? <LoadingPage text="Buscando itens" />
+        :<div className='products-container'>
             { products.length === 0 ? showNotFoundMessage() : buildProductCards()}
         </div>
    ) 

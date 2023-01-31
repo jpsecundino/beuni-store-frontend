@@ -4,6 +4,7 @@ import { Icon, Button } from "semantic-ui-react";
 import ProductFetcher from "./ProductFetcher";
 import { useLocation } from 'react-router-dom';
 import "./ProductPage.css"
+import LoadingPage from './LoadingPage';
 
 function ProductPage() {
 
@@ -27,7 +28,10 @@ function ProductPage() {
     }, [])
 
     return (
-        !loadingResponse && product !== undefined ?
+        loadingResponse ?
+            <LoadingPage text='Carregando produto'/>
+        :
+        product !== undefined ?
             <div className='product-page'>
                 <div className="left-side">
                     <img className="image" src={product.image[0].url}></img>
