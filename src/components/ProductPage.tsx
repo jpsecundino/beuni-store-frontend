@@ -6,6 +6,11 @@ import {useLocation} from 'react-router-dom';
 import styles from "./ProductPage.module.css"
 import LoadingPage from './LoadingPage';
 
+
+/**
+ * This component shows information about a specific product.
+ * @constructor
+ */
 function ProductPage() {
 
     const location = useLocation()
@@ -42,11 +47,15 @@ function ProductPage() {
                         <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly/>
 
                         <p>
-                            {product.hasFreeShipping === "false" ? "Frete grátis!" : ''}
+                            {product.hasFreeShipping === "true" ? "Frete grátis!" : 'Não possui frete grátis'}
                         </p>
 
                         <p>
                             Pedido Mínimo: {product.minimumQuantity}
+                        </p>
+
+                        <p>
+                            Estoque: {product.total_stock}
                         </p>
 
                         <p className={styles.productDescription}>

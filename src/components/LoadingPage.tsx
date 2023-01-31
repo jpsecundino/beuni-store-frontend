@@ -1,10 +1,13 @@
-import { Loader } from "semantic-ui-react";
+import {Loader} from "semantic-ui-react";
 import styles from "./LoadingPage.module.css"
 
 type LoadingPageProps = {
     text: string
 }
 
+/**
+ * This component should show a loading message to the user while some operation is running
+ */
 function LoadingPage(props: LoadingPageProps) {
     return (
         <Loader size="massive" className={styles.loadingPage}>

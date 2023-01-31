@@ -5,6 +5,10 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import IconButton from '@mui/material/IconButton';
 import {Link} from "react-router-dom";
 
+
+/**
+ * Is always on top of page. It holds the company logo and the search bar.
+ */
 function TopBar() {
 
     let [query, setQuery] = useState('');

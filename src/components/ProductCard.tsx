@@ -1,6 +1,6 @@
-import { Icon, Button } from "semantic-ui-react";
+import {Icon, Button} from "semantic-ui-react";
 import styles from "./ProductCard.module.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export type ProductProps = {
     productInfo: {
@@ -18,15 +18,18 @@ export type ProductProps = {
     }
 };
 
+/**
+ * // This component is responsible to show the product info in a user-friendly way
+ */
 function ProductCard(props: ProductProps) {
-    let { id, name, description, price, image, minimumQuantity, total_stock } = props.productInfo;
+    let {id, name, description, price, image, minimumQuantity, total_stock} = props.productInfo;
 
     function isOutOfStock() {
         return total_stock === 0;
     }
 
     return (
-        <Link to={{pathname: "/product", search:`?id=${id}`}}>
+        <Link to={{pathname: "/product", search: `?id=${id}`}}>
             <div className={styles.card}>
                 <div className={styles.top}>
                     <img className={styles.image} src={image[0].url}></img>
@@ -50,15 +53,15 @@ function ProductCard(props: ProductProps) {
                             <Button.Content hidden>
                                 +
                             </Button.Content>
-                            
+
                             <Button.Content visible>
-                                <Icon size="large" name="plus cart" />
+                                <Icon size="large" name="plus cart"/>
                             </Button.Content>
                         </Button>
                     </div>
-                    </div>
-
                 </div>
+
+            </div>
         </Link>
     )
 
