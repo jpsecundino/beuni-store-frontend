@@ -1,6 +1,6 @@
 import { useState } from "react";
 import BeuniLogo from "../beuni-logo.png"
-import "./TopBar.css";
+import styles from "./TopBar.module.css";
 import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import IconButton from '@mui/material/IconButton';
 import { Link } from "react-router-dom";
@@ -15,15 +15,15 @@ function TopBar(props: TopBarProps) {
     let { onQuery } = props;
 
     return (
-        <header className="bar-container">
-            <Link to={{pathname: "/"}}>
-                <img className="logo" src={BeuniLogo} alt="Company logo" width={146} height={44} />
+        <header className={styles.barContainer}>
+            <Link to={{pathname: "/"}} onClick={() => setQuery('')} >
+                <img className={styles.logo} src={BeuniLogo} alt="Company logo" width={146} height={44} />
             </Link>
-            <form className="form-container" onSubmit={(event) => event.preventDefault()}>
-                <input className="form-input" type="text" name="product-query" placeholder="Pesquise por um produto" value={query} onChange={(event) => setQuery(event.target.value) } />
+            <form className={styles.formContainer} onSubmit={(event) => event.preventDefault()}>
+                <input className={styles.formInput} type="text" name="product-query" placeholder="Pesquise por um produto" value={query} onChange={(event) => setQuery(event.target.value) } />
                 <Link to={{pathname: "/search", search: `?name=${query}`}} >
-                    <IconButton className="form-btn" type="submit" onClick={() => onQuery(query)}>
-                        <SearchSharpIcon className="form-btn"/>
+                    <IconButton className={styles.formBtn} type="submit" onClick={() => onQuery(query)}>
+                        <SearchSharpIcon className={styles.form_btn}/>
                         </IconButton>
                 </Link>
             </form>

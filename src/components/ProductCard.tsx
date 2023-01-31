@@ -1,5 +1,5 @@
 import { Icon, Button } from "semantic-ui-react";
-import "./ProductCard.css";
+import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 
 export type ProductProps = {
@@ -27,22 +27,22 @@ function ProductCard(props: ProductProps) {
 
     return (
         <Link to={{pathname: "/product", search:`?id=${id}`}}>
-            <div className="card">
-                <div className="top">
-                    <img className="image" src={image[0].url}></img>
+            <div className={styles.card}>
+                <div className={styles.top}>
+                    <img className={styles.image} src={image[0].url}></img>
                 </div>
-                <div className="middle">
-                    <p className="product-name">{name}</p>
-                    <p className="minimum-quantity">Pedido mínimo {minimumQuantity}</p>
-                    <p className="description">{description}</p>
+                <div className={styles.middle}>
+                    <p className={styles.productName}>{name}</p>
+                    <p className={styles.minimumQuantity}>Pedido mínimo {minimumQuantity}</p>
+                    <p className={styles.description}>{description}</p>
                 </div>
-                <div className="bottom">
-                    <span className="price">R${parseFloat(price).toFixed(2)}</span>
-                    <div className="button-region">
+                <div className={styles.bottom}>
+                    <span className={styles.price}>R${parseFloat(price).toFixed(2)}</span>
+                    <div className={styles.buttonRegion}>
                         {isOutOfStock() ? "Fora de estoque" : ""}
                         <Button
                             size="large"
-                            className="button"
+                            className={styles.button}
                             animated="fade"
                             color="orange"
                             disabled={isOutOfStock()}

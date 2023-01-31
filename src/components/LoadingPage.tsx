@@ -1,5 +1,5 @@
 import { Loader } from "semantic-ui-react";
-import "./LoadingPage.css"
+import styles from "./LoadingPage.module.css"
 
 type LoadingPageProps = {
     text: string
@@ -7,7 +7,7 @@ type LoadingPageProps = {
 
 function LoadingPage(props: LoadingPageProps) {
     return (
-        <Loader size="massive" className="loading-page">
+        <Loader size="massive" className={styles.loadingPage}>
             {props.text}
         </Loader>
     )

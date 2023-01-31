@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import "./ProductList.css"
+import styles from "./ProductList.module.css"
 import ProductFetcher from "./ProductFetcher";
 import { useLocation } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
-
 
 function ProductList() {
 
@@ -47,7 +46,7 @@ function ProductList() {
     return (
         loadingResponse 
         ? <LoadingPage text="Buscando itens" />
-        :<div className='products-container'>
+        :<div className={styles.productsContainer}>
             { products.length === 0 ? showNotFoundMessage() : buildProductCards()}
         </div>
    ) 

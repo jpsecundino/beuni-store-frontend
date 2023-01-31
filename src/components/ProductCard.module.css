@@ -38,14 +38,14 @@
     width: 100%;
 }
 
-.product-name {
+.productName {
     margin: 10px 0px 0px 0px !important;
     font-size: x-large;
     padding: 0px 3px;
     overflow: hidden;
 }
 
-.minimum-quantity {
+.minimumQuantity {
     margin: 5px 0px 5px 0px;
     color: darkgrey;
     font-size: large;
@@ -66,7 +66,7 @@
     font-weight: bold;
 }
 
-.button-region{
+.buttonRegion{
     color: red;
     display: flex;
     flex-direction: column;

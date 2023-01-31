@@ -3,7 +3,7 @@ import Rating from '@mui/material/Rating';
 import { Icon, Button } from "semantic-ui-react";
 import ProductFetcher from "./ProductFetcher";
 import { useLocation } from 'react-router-dom';
-import "./ProductPage.css"
+import styles from "./ProductPage.module.css"
 import LoadingPage from './LoadingPage';
 
 function ProductPage() {
@@ -32,11 +32,11 @@ function ProductPage() {
             <LoadingPage text='Carregando produto'/>
         :
         product !== undefined ?
-            <div className='product-page'>
-                <div className="left-side">
-                    <img className="image" src={product.image[0].url}></img>
+            <div className={styles.productPage}>
+                    <div className={styles.leftSide}>
+                    <img className={styles.image} src={product.image[0].url}></img>
                 </div>
-                <div className='right-side'>
+                <div className={styles.rightSide}>
                     <h1>{product.name}</h1> 
 
                     <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly />
@@ -49,12 +49,12 @@ function ProductPage() {
                         Pedido Mínimo: {product.minimumQuantity}
                     </p>
 
-                    <p className='product-description'>
+                        <p className={styles.productDescription}>
                         {product.description}
                     </p>
 
                     <Button
-                        className='add-to-cart-button'
+                        className={styles.addToCartButton}
                         size="big"
                         animated="fade"
                         color="orange"
