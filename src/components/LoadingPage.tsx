@@ -6,7 +6,7 @@ type LoadingPageProps = {
 }
 
 /**
- * This component should show a loading message to the user while some operation is running
+ * Shows a loading message to the user while some operation is running
  */
 function LoadingPage(props: LoadingPageProps) {
     return (

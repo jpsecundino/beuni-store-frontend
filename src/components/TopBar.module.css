@@ -1,4 +1,4 @@
-.barContainer{
+.barContainer {
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -11,7 +11,7 @@
     z-index: 100;
 }
 
-.logo{
+.logo {
     min-width: 200;
     min-height: 44;
     margin: 10px 10px;
@@ -36,7 +36,7 @@ form {
 
 }
 
-.formInput{
+.formInput {
     flex: 2;
     border: none;
     height: 70%;
@@ -45,7 +45,7 @@ form {
     border-right: 1px solid #494f5525;
 }
 
-.formInput:focus{
+.formInput:focus {
     outline: none;
 }
 

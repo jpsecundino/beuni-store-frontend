@@ -1,5 +1,5 @@
 /**
- * This component is shown on path '/'
+ * Is shown on path '/'
  * This is the first page the user sees.
  * @constructor
  */

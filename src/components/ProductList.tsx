@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import ProductCard from "./ProductCard";
 import styles from "./ProductList.module.css"
 import ProductFetcher from "./ProductFetcher";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import LoadingPage from "./LoadingPage";
 
+/**
+ * Responsible to show a list of ProductCard for the user.
+ */
 function ProductList() {
 
     const notFoundMessage = 'Não encontramos nenhum produto com esse nome :(';
@@ -14,7 +17,7 @@ function ProductList() {
 
     let [loadingResponse, setLoadingResponse] = useState<boolean>(true);
     let [products, setProducts] = useState<any[]>([]);
-    
+
     const getProductsByName = (name: string) => {
         setLoadingResponse(true);
         ProductFetcher.getProductsByName(name)
@@ -43,12 +46,12 @@ function ProductList() {
 
 
     return (
-        loadingResponse 
-        ? <LoadingPage text="Buscando itens" />
-        :<div className={styles.productsContainer}>
-            { products.length === 0 ? showNotFoundMessage() : buildProductCards()}
-        </div>
-   ) 
+        loadingResponse
+            ? <LoadingPage text="Buscando itens"/>
+            : <div className={styles.productsContainer}>
+                {products.length === 0 ? showNotFoundMessage() : buildProductCards()}
+            </div>
+    )
 
 }
 

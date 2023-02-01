@@ -1,6 +1,7 @@
 import {Icon, Button} from "semantic-ui-react";
 import styles from "./ProductCard.module.css";
 import {Link} from "react-router-dom";
+import Rating from '@mui/material/Rating';
 
 export type ProductProps = {
     productInfo: {
@@ -19,10 +20,10 @@ export type ProductProps = {
 };
 
 /**
- * // This component is responsible to show the product info in a user-friendly way
+ * Responsible to show the product info in a user-friendly way
  */
 function ProductCard(props: ProductProps) {
-    let {id, name, description, price, image, minimumQuantity, total_stock} = props.productInfo;
+    let {id, name, description, price, image, minimumQuantity, total_stock, rating} = props.productInfo;
 
     function isOutOfStock() {
         return total_stock === 0;
@@ -36,7 +37,13 @@ function ProductCard(props: ProductProps) {
                 </div>
                 <div className={styles.middle}>
                     <p className={styles.productName}>{name}</p>
-                    <p className={styles.minimumQuantity}>Pedido mínimo {minimumQuantity}</p>
+                    <div className={styles.middleRow}>
+                        <div className={styles.rating}>
+                            <Rating size='large' name="read-only" value={rating} readOnly />
+                            <p>({rating})</p>
+                        </div>
+                        <p className={styles.minimumQuantity}>Pedido mínimo {minimumQuantity}</p>
+                    </div>
                     <p className={styles.description}>{description}</p>
                 </div>
                 <div className={styles.bottom}>

@@ -8,8 +8,7 @@ import LoadingPage from './LoadingPage';
 
 
 /**
- * This component shows information about a specific product.
- * @constructor
+ * Shows information about a specific product.
  */
 function ProductPage() {
 
@@ -42,26 +41,32 @@ function ProductPage() {
                         <img className={styles.image} src={product.image[0].url}></img>
                     </div>
                     <div className={styles.rightSide}>
-                        <h1>{product.name}</h1>
+                        <div className={styles.title}>
+                            <h1>{product.name}</h1>
+                        </div>
+                        <div className={styles.productInfo}>
 
-                        <Rating size='large' name="read-only" value={parseInt(product.rating)} readOnly/>
+                            <div className={styles.rating}>
+                                <Rating size='large' name="read-only" value={parseFloat(product.rating)} readOnly />
+                                ({parseFloat(product.rating)})
+                            </div>
 
-                        <p>
-                            {product.hasFreeShipping === "true" ? "Frete grátis!" : 'Não possui frete grátis'}
-                        </p>
+                            <p>
+                                {product.hasFreeShipping === "true" ? "Frete grátis!" : 'Não possui frete grátis'}
+                            </p>
 
-                        <p>
-                            Pedido Mínimo: {product.minimumQuantity}
-                        </p>
+                            <p>
+                                Pedido Mínimo: {product.minimumQuantity}
+                            </p>
 
-                        <p>
-                            Estoque: {product.total_stock}
-                        </p>
+                            <p>
+                                Estoque: {product.total_stock}
+                            </p>
 
-                        <p className={styles.productDescription}>
-                            {product.description}
-                        </p>
-
+                            <p className={styles.productDescription}>
+                                {product.description}
+                            </p>
+                        </div>
                         <Button
                             className={styles.addToCartButton}
                             size="big"

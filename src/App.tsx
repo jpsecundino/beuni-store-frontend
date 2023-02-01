@@ -11,7 +11,7 @@ import {
     BrowserRouter,
     Routes,
     Route,
-  } from "react-router-dom";
+} from "react-router-dom";
 
 function App() {
 
@@ -20,15 +20,15 @@ function App() {
     return (
         <div className="App">
             <BrowserRouter>
-            <TopBar />
-            <div className='page-content'>
-                    <Routes> 
-                    <Route path='/' element={<LandingPage/>}></Route>
-                    <Route path='/search' element={<ProductList />} />
-                    <Route path='/product' element={<ProductPage/>} />
+                <TopBar/>
+                <div className='page-content'>
+                    <Routes>
+                        <Route path='/' element={<LandingPage/>}></Route>
+                        <Route path='/search' element={<ProductList/>}/>
+                        <Route path='/product' element={<ProductPage/>}/>
                     </Routes>
-            </div>
-            </BrowserRouter>          
+                </div>
+            </BrowserRouter>
 
         </div>
     );
