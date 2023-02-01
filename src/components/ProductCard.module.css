@@ -43,6 +43,7 @@
     font-size: x-large;
     padding: 0px 3px;
     overflow: hidden;
+    color: black;
 }
 
 .minimumQuantity {
@@ -59,11 +60,13 @@
     text-align: justify;
     text-overflow: ellipsis;
     overflow: hidden;
+    color: black;
 }
 
 .price {
     font-size: xx-large;
     font-weight: bold;
+    color: black;
 }
 
 .buttonRegion {
